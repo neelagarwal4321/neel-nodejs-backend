@@ -36,7 +36,7 @@ fs.copyFile('text.txt', './copy/text2.txt', function(err){
     else console.log("done");
 })
 
-fs.unlink('text2.txt', function(err){
+fs.unlink('./copy/text2.txt', function(err){
     if(err){
         console.error(err.message);
     }
@@ -49,3 +49,11 @@ fs.rmdir('./copy', { recursive: true }, function(err){
     }
     else console.log("removed");
 }) */
+
+const http = require('http');
+
+const server = http.createServer(function(req, res){
+    res.end("hello world");
+})
+
+server.listen(8080);
