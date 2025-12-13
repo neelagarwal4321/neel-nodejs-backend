@@ -22,7 +22,7 @@ app.get("/about", function(req, res){
     res.send("about page");
 });
 
-// this will throw an error and go to the console / error handling middleware
+// this route will throw an error and go to the console / error handling middleware
 // and send a response to the client
 app.get("/profile", function(req, res, next){
     return next(new Error("profile page not found"));
