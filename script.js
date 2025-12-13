@@ -1,59 +1,23 @@
-const fs = require('fs');
+const express = require('express')
+const app = express()
 
-/*
-writefile
-appendfile
-copyfile
-rename
-unlink
+// middleware
+app.use(function(req, res, next){
+    console.log("Middleware 1");
+    next();
+});
 
 
-fs.writeFile('text.txt', "main theek hu", function(err){
-    if(err){
-        console.error(err);
-    }
-    else console.log("done");
-})
+// routes create
+app.get("/", function(req, res){
+    res.send("Champion");
+});
 
-fs.appendFile('text.txt', "main theek hu", function(err){
-    if(err){
-        console.error(err);
-    }
-    else console.log("done");
-})
+app.get("/profile", function(req, res){
+    res.send("Neel");
+});
 
-fs.rename('text.txt', 'text2.txt', function(err){
-    if(err){
-        console.error(err);
-    }
-    else console.log("done");
-})
-
-fs.copyFile('text.txt', './copy/text2.txt', function(err){
-    if(err){
-        console.error(err.message);
-    }
-    else console.log("done");
-})
-
-fs.unlink('./copy/text2.txt', function(err){
-    if(err){
-        console.error(err.message);
-    }
-    else console.log("removed");
-})
-
-fs.rmdir('./copy', { recursive: true }, function(err){
-    if(err){
-        console.error(err.message);
-    }
-    else console.log("removed");
-}) */
-
-const http = require('http');
-
-const server = http.createServer(function(req, res){
-    res.end("hello world");
-})
-
-server.listen(8080);
+app.listen(3000, function(){
+    console.log("Server is running on port 3000");
+});
+ 
