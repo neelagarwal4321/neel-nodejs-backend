@@ -7,14 +7,19 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use(function(req, res, next){
+    console.log("Middleware 2");
+    next();
+});
+
 
 // routes create
 app.get("/", function(req, res){
-    res.send("Champion");
+    res.send("Champion is running on port 3000");
 });
 
-app.get("/profile", function(req, res){
-    res.send("Neel");
+app.get("/about", function(req, res){
+    res.send("about page");
 });
 
 app.listen(3000, function(){
