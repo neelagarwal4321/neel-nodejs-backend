@@ -22,9 +22,17 @@ app.get("/about", function(req, res){
     res.send("about page");
 });
 
-app.get("/profile", function(req, res){
-    res.send("profile page");
+// this will throw an error and go to the console / error handling middleware
+// and send a response to the client
+app.get("/profile", function(req, res, next){
+    return next(new Error("profile page not found"));
 });
+
+// error handling (always at the end)
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.status(500).send("Something broke!");
+})
 
 app.listen(3000, function(){
     console.log("Server is running on port 3000");
