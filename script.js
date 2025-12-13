@@ -28,7 +28,7 @@ app.get("/profile", function(req, res, next){
     return next(new Error("profile page not found"));
 });
 
-// error handling (always at the end)
+// error handling (always at the end) | the output is shown in the frotnend URL
 app.use(function(err, req, res, next){
     console.error(err.stack);
     res.status(500).send("Something broke!");
