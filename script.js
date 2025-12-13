@@ -22,6 +22,10 @@ app.get("/about", function(req, res){
     res.send("about page");
 });
 
+app.get("/profile", function(req, res){
+    res.send("profile page");
+});
+
 app.listen(3000, function(){
     console.log("Server is running on port 3000");
 });
