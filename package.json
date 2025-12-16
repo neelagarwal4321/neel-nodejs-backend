@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/neelagarwal4321/neel-nodejs-backend#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.2.1"
   }
 }
