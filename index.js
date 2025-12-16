@@ -13,19 +13,29 @@ app.get("/", function(req, res){
 
 app.get("/profile", async(req, res) => {
     try{
-        const user = {
+        const user = [{
             id: 1,
             name: "neel",
-            role: "admin"
-        }
+            role: "admin",
+            age: 23
+        }, {
+            id: 2,
+            name: "jerry",
+            role: "servant",
+            age: 16
+        }];
+
         if(!user){
-            res.status(404).json({success:false, message:"this profile was not file"});
+            res.status(404).json({success:false, message:"this profile was not found.."});
         }
         res.status(200).json({success:true, data:user})
+    }
+    catch(error){
+        res.status(500).json({success:false, message:"internal server error..", error:error.message})
     }
 });
 
 
-app.listen(3000, function(){
+app.listen(3000, () => {
     console.log("server is running on port 3000.")
-})
+});
