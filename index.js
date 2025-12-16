@@ -17,6 +17,11 @@ app.get("/", function(req, res){
     res.render("index");
 });
 
+// creating dynami route
+app.get("/profile/:kuchbhi", function(req, res){
+    res.send("chal rha hai...")
+});
+
 app.listen(3000, function(){
     console.log("Server is running on port 3000");
 }); 
