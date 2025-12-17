@@ -8,11 +8,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 
-// creating API
 app.get("/", function(req, res){
     res.render("index.ejs")
 });
 
+// creating API
 app.get("/profile", async(req, res) => {
     try{
         const user = [{
@@ -52,7 +52,7 @@ app.get("/ages", async(req, res) => {
             age: 16
         }];
         if(age){
-            if(Number(age)<18){
+            if(Number(age)>18){
                 res.status(200).json({success: true, message: "success", data:user});
             }
             else{
