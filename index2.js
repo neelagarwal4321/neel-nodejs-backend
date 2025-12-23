@@ -6,7 +6,7 @@ const app = express();
 
 const user = [];
 
-// post api
+// POST api
 
 app.post('/user', (req, res) => {
     try{
