@@ -28,6 +28,17 @@ app.post('/user', (req, res) => {
     }
 });
 
+// get api
+
+app.get("/post", async(req, res) => {
+    try{
+        res.status(200).json({success:true, message:"success", data:user});
+    }
+    catch(error){
+        res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
+});
+
 app.listen(8000, () => {
     console.log("The server is running on port 8000.");
 });
