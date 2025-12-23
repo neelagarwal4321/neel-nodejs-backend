@@ -9,9 +9,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.get("/", function(req, res){
-    res.render("index.ejs")
+    res.render("index.ejs");
 });
 
+const user = [];
 // creating API
 app.get("/profile", async(req, res) => {
     try{
@@ -40,17 +41,7 @@ app.get("/profile", async(req, res) => {
 app.get("/ages", async(req, res) => {
     try{
         const {age} = req.query;
-        const user = [{
-            id: 1,
-            name: "neel",
-            role: "admin",
-            age: 23
-        }, {
-            id: 2,
-            name: "jerry",
-            role: "cutie",
-            age: 16
-        }];
+        
         if(age){
             if(Number(age)>18){
                 res.status(200).json({success: true, message: "success", data:user});
