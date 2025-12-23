@@ -28,7 +28,7 @@ app.post('/user', (req, res) => {
     }
 });
 
-// get api
+// GET Api
 
 app.get("/post", async(req, res) => {
     try{
