@@ -41,16 +41,26 @@ app.get("/profile", async(req, res) => {
 app.get("/ages", async(req, res) => {
     try{
         const {age} = req.query;
-        
+        const user_info = [{
+            name:"Neel",
+            age:23,
+            id:Date.now(),
+            car:"Ferrari LaFerrari"
+        },{
+            name:"Riya",
+            age:22,
+            id:Date.now(),
+            car:"Rolls Royce Ghost"
+        }];
         if(age){
             if(Number(age)>18){
-                res.status(200).json({success: true, message: "success", data:user});
+                res.status(200).json({success: true, message: "success", data:user_info});
             }
             else{
                 res.status(403).json({success: false, message: "age must be greater than 18 bsdk.."});
             }
         }
-        res.status(200).json({success: true, message: "success", data:user});
+        res.status(200).json({success: true, message: "success", data:user_info});
     }
     catch(error){
         res.status(500).json({success: false, message:"internal server error..", error:error.message});
