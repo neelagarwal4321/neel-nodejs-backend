@@ -1,9 +1,21 @@
 const http = require('http');
+const fs = require('fs');
 
 // http server
 const myServer = http.createServer((req, res) => {
-    console.log(req.headers);
-    res.end("Hello from Server.");
+    const log = `${Date.now()}: ${req.url} New Req. Received.\n`;
+    fs.appendFile('log.txt', log, (err, data)=>{
+        switch(req.url){
+            case "/":
+                res.end("Hello from Home.");
+                break;
+            case "/about":
+                res.end("Hello I am Neel Agarwal.");
+                break;
+            default:
+                res.end("404 Not Found.");
+        }
+    });
 });
 
 myServer.listen(8000, ()=>{
