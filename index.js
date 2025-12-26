@@ -70,6 +70,32 @@ app.get("/ages", async(req, res) => {
     }
 });
 
+// post API
+
+const chat = [];
+
+app.post("/chat", (req,res) => {
+    try{
+        const {name, text} = req.body();
+        if(!String(name)){
+            res.status(403).json({status:false, message:"Enter a valid name"});
+        }
+        else if(!(String(text))){
+            res.status(403).json({status:false, message:"Don't didn't go through"});
+        }
+        const new_chat = [{
+            name,
+            text,
+            id: Date.now()
+        }];
+        chat.push(new_user);
+        res.status(200).json({sucess:true, message:"Successfully text sent", data:chat});
+    }
+    catch(error){
+        res.status(500).json({success:false, message:"Internal server error", error:error.message});
+    }
+});
+
 
 app.listen(3000, () => {
     console.log("server is running on port 3000.")
