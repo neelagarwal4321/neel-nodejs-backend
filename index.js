@@ -52,7 +52,10 @@ app.get("/ages", async(req, res) => {
             id:Date.now(),
             car:"Rolls Royce Ghost"
         }];
-        if(age){
+        if(!user){
+            res.status(403).json({success: false, message: "The user is not found.."});
+        }
+        else if(age){
             if(Number(age)>18){
                 res.status(200).json({success: true, message: "success", data:user_info});
             }
