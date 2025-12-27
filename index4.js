@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res) => {
     console.log("Middleware 1 running...");
-    res.send("Middlware 1 says Hello!");
+    next();
 });
 
 app.use((req, res, next) => {
@@ -35,6 +35,7 @@ app.get("/users", (req, res) => {
 // REST APIs
 
 app.get("/api/users", (req, res) => {
+    res.setHeader("Name", "Neel Agarwal");
     return res.json(users);
 });
 
