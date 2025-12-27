@@ -9,6 +9,11 @@ const PORT = 8000;
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res) => {
+    console.log("Middleware 1 running...");
+    res.send("Middlware 1 says Hello!");
+});
+
 app.use((req, res, next) => {
     fs.appendFile(
         "log2.txt",
