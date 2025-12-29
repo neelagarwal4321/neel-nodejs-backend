@@ -8,15 +8,18 @@ const PORT = 8000;
 // middleware
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.use((req, res) => {
+app.use((req, res, next) => {
     console.log("Middleware 1 running...");
-    res.send("Hello from Middleware 1");
     next();
 });
 
 app.use((req, res, next) => {
-    fs.appendFile("log2.txt",`\n${Date.now()}: ${req.method}: ${req.path}\n`, (err, data) => {
+    fs.appendFile("log2.txt", `\n${Date.now()}: ${req.method}: ${req.path}\n`, (err) => {
+        if(err){
+            console.error(err); // Handle file write error
+        }
         next();
     });
 });
@@ -25,7 +28,7 @@ app.use((req, res, next) => {
 app.get("/users", (req, res) => {
     const html = `
     <ul>
-        ${users.map((user) => `<li>${user.first_name}</li>`).join("")};
+        ${users.map((user) => `<li>${user.first_name}</li>`).join("")}
     </ul>
     `;
     res.send(html);
@@ -34,7 +37,7 @@ app.get("/users", (req, res) => {
 // REST APIs
 
 app.get("/api/users", (req, res) => {
-    res.setHeader("Name", "Neel Agarwal");
+    // res.setHeader("Name", "Neel Agarwal");
     return res.json(users);
 });
 
@@ -52,7 +55,16 @@ app
 
 
 app.post("/api/users", (req,res) => {
-    return res.json({status: "Pending"});
+    const {last_name, email, gender, ip_address} = req.body;
+    const newUser = {
+        id: Date.now(),
+        last_name,
+        email,
+        gender,
+        ip_address
+    };
+    users.push(newUser);
+    res.status(201).json({ status: "Success", data: newUser });
 });
 
 // server
