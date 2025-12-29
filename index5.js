@@ -24,18 +24,18 @@ app.get("/fifawc", async(req,res) => {
     }
 });
 
-const winners = [];
+const champions = [];
 
-app.post("/icc/winners", (req, res) => {
+app.post("/champ_league/winners", (req, res) => {
     try{
-        const {host, winners, year} = req.body();
+        const {host, winners, year} = req.body;
         if(!String(host)){
             res.status(403).json({success:false, message:"Give a valid host."});
         }
-        if(!(Number(year)>=1931 && Number(year)<=2027)){
+        else if(Number(year) == undefined){
             res.status(403).json({success:false, message:"Give a valid year."});
         }
-        if(!String(winners)){
+        else if(!String(winners)){
             res.status(403).json({success:false, message:"Give a valid winner."});
         }
         const new_winners = [{
@@ -44,17 +44,17 @@ app.post("/icc/winners", (req, res) => {
             year,
             id: Date.now()
         }];
-        winners.push(new_winners);
-        res.status(200).json({success:false, message:"success", data:winners});
+        champions.push(new_winners);
+        res.status(200).json({success:true, message:"success", data:champions});
     }
     catch(error){
         res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
     }
 });
 
-app.get("/icc/winners", async(req, res) => {
+app.get("/champ_league/winners", async(req, res) => {
     try{
-        res.status(200).json({success:false, message:"success", data:winners});
+        res.status(200).json({success:true, message:"success", data:champions});
     }
     catch{
         res.status(500).json({success:false, message:"Internal Server Error", error:error.message});

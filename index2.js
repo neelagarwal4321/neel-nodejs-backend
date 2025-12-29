@@ -12,7 +12,7 @@ app
     .route("/user")
     .post((req, res) => {
         try{
-            const {job_title, salary} = req.body();
+            const {job_title, salary} = req.body;
             if(!String(job_title) && Number(salary)==undefined){
                 res.status(403).json({success:false, message:"Give a valid title and salary."});
             }
