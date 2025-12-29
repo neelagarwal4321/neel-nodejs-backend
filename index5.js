@@ -92,7 +92,7 @@ app.delete("/reviews/:user_id", (req, res) => {
         res.status(200).json({ success: true, message: "Review deleted successfully" });
     }
     catch(error){
-        res.status(500).json({ success:true, message: "Internal Server Error..", error:error.message});
+        res.status(500).json({ success:true, message: "Internal Server Error..", error:error.message });
     }
 });
 
