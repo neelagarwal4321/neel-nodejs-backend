@@ -11,14 +11,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res) => {
     console.log("Middleware 1 running...");
+    res.send("Hello from Middleware 1");
     next();
 });
 
 app.use((req, res, next) => {
-    fs.appendFile(
-        "log2.txt",
-        `\n${Date.now()}: ${req.method}: ${req.path}\n`, (err, data) => {
-            next();
+    fs.appendFile("log2.txt",`\n${Date.now()}: ${req.method}: ${req.path}\n`, (err, data) => {
+        next();
     });
 });
 
@@ -47,11 +46,9 @@ app
         return res.json(user);
     })
     .patch((req,res) => {
-        return res.json({status: "Pending"});
+        res.json({status: "Pending"});
     })
-    .delete((req,res) => {
-        return res.json({status: "Pending"});
-    });
+    .delete((req,res) => res.json({ status: "Pending" }));
 
 
 app.post("/api/users", (req,res) => {
