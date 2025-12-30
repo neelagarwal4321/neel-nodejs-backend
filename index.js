@@ -70,7 +70,7 @@ app.get("/ages", async(req, res) => {
     }
 });
 
-// post API
+// post API.
 
 const chat = [];
 
