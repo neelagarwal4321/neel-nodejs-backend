@@ -38,6 +38,7 @@ app.get("/profile", async(req, res) => {
 });
 
 // creating another API
+
 app.get("/ages", async(req, res) => {
     try{
         const {age} = req.query;
