@@ -80,6 +80,8 @@ app.post("/reviews", (req,res) => {
     }
 });
 
+// delete api
+
 app.delete("/reviews/:user_id", (req, res) => {
     try{
         const userId = Number(req.params.user_id);
