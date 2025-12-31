@@ -50,7 +50,7 @@ app.post("/cart", (req,res) => {
     }
 });
 
-// REVIEW APIs creation (post and get)
+// REVIEW APIs creation (post, delete and get). review route
 
 const review = [];
 
