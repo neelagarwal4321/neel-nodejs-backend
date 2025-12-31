@@ -98,6 +98,8 @@ app.delete("/reviews/:user_id", (req, res) => {
     }
 });
 
+// get api review route
+
 app.get("/reviews", async(req, res) => {
     try{
         res.status(200).json({success:true, message:"successfully given review", data:review});
