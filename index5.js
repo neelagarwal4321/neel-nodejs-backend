@@ -80,7 +80,7 @@ app.post("/reviews", (req,res) => {
     }
 });
 
-// delete api /review/user_id route
+// delete api /review/user_id route.
 
 app.delete("/reviews/:user_id", (req, res) => {
     try{
