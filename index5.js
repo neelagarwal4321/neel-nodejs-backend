@@ -54,6 +54,8 @@ app.post("/cart", (req,res) => {
 
 const review = [];
 
+// post api /review route.
+
 app.post("/reviews", (req,res) => {
     try{
         const {movie_title, rating, review_text} = req.body;
