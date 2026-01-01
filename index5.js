@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-// get api practice
+// get api practice.
 
 app.get("/profile", async(req, res) => {
     try{
