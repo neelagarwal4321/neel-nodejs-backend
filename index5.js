@@ -30,7 +30,7 @@ app.get("/profile", async(req, res) => {
     }
 });
 
-// post api practice 
+// post api practice.
 
 app.post("/cart", (req,res) => {
     try{
