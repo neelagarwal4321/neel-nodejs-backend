@@ -17,7 +17,7 @@ app.get("/profile", async(req, res) => {
             age: 38,
             id: 101
         }];
-        
+
         if(id){
             if(Number(id)){
                 res.status(200).json({success:true, message:"success", data:user});
@@ -44,6 +44,7 @@ app.post("/cart", (req,res) => {
             item,
             qty
         }];
+        
         res.status(200).json({success:true, message:"success", data:cart});
     }
     catch(error){
