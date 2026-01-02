@@ -44,7 +44,7 @@ app.post("/cart", (req,res) => {
             item,
             qty
         }];
-        
+
         res.status(200).json({success:true, message:"success", data:cart});
     }
     catch(error){
@@ -76,6 +76,7 @@ app.post("/reviews", (req,res) => {
             rating,
             review_text,
         }];
+        
         review.push(new_review);
         res.status(200).json({success:true, message:"successfully given review", data:review});
     }
