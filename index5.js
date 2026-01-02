@@ -22,7 +22,9 @@ app.get("/profile", async(req, res) => {
             if(Number(id)){
                 res.status(200).json({success:true, message:"success", data:user});
             }
-            res.status(403).json({success:false, message:"must be a valiid ID (numeric)."});
+            else{
+                res.status(403).json({success:false, message:"must be a valiid ID (numeric)."});
+            }
         }
         res.status(200).json({success:true, message:"success", data:user});
     }
