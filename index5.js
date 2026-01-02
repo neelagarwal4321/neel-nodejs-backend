@@ -76,7 +76,7 @@ app.post("/reviews", (req,res) => {
             rating,
             review_text,
         }];
-        
+
         review.push(new_review);
         res.status(200).json({success:true, message:"successfully given review", data:review});
     }
@@ -95,6 +95,7 @@ app.delete("/reviews/:user_id", (req, res) => {
         if(reviewIndex === -1){
             return res.status(404).json({ success: false, message: "Review not found." });
         }
+        
         review.splice(reviewIndex, 1);
         res.status(200).json({ success: true, message: "Review deleted successfully" });
     }
