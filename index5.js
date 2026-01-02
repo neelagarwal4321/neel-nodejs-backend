@@ -145,7 +145,7 @@ app.post("/register", (req,res) => {
             username: username.trim(),
             password,
         }];
-        
+
         users.push(new_user);
         res.status(200).json({success:true, message:"successfully registered", data: new_user.username});
     }
@@ -157,6 +157,16 @@ app.post("/register", (req,res) => {
 app.get("/register", async(req, res) => {
     try{
         const {username} = req.query;
-        
+        if(username){
+            const user = users.find(u => u.username === username);
+            if(!user){
+                return res.status(404).json({ success: false, message: "User not found." });
+            }
+            res.status(200).json({ success: true, data: { username: user.username }});
+        }
+        res.status(200).json({ success: true, data: users.map(u => ({ username: u.username }))});
+    }
+    catch (error) {
+        res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
 });
