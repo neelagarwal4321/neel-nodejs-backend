@@ -67,10 +67,10 @@ app.post("/reviews", (req,res) => {
             return res.status(400).json({ success: false, message: "Movie title is required." });
         }
         else if(!review_text || typeof review_text !== 'string' || review_text.trim().length === 0){
-            res.status(403).json({success:false, message: "Review text is required." });
+            return res.status(403).json({success:false, message: "Review text is required." });
         }
         else if((Number(rating)!==0 && Number(rating)>5)){
-            res.status(403).json({success:false, message: "Rating must be between 1 and 5." });
+            return res.status(403).json({success:false, message: "Rating must be between 1 and 5." });
         }
         const new_review = [{
             user_id: Date.now(),
@@ -122,28 +122,41 @@ app.listen(3000, () => {
 
 
 // Another new API
+const users = [];
 
 app.post("/register", (req,res) => {
     try{
         const {username, password, confirm_password} = req.body;
-        if(!String(username)){
-            return res.status(400).json({ success: false, message: "Username is required." });
+
+        if (!username || typeof username !== 'string' || username.trim().length < 3) {
+            return res.status(400).json({ success: false, message: "Username must be at least 3 characters." });
         }
-        else if(!password || typeof password !== 'string' || password.trim().length === 0){
-            return res.status(400).json({ success: false, message: "Password is required." });
+        if (!password || typeof password !== 'string' || password.trim().length < 6) {
+            return res.status(400).json({ success: false, message: "Password must be at least 6 characters." });
         }
-        else if(password !== confirm_password){
+        if (password !== confirm_password) {
             return res.status(400).json({ success: false, message: "Passwords do not match." });
         }
+
+        if(users.find(u => u.username === username.trim())){
+            return res.status(400).json({ success: false, message:"User already exists." });
+        }
         const new_user = [{
-            username,
+            username: username.trim(),
             password,
-            confirm_password,
         }];
-        user.push(new_user);
-        res.status(200).json({success:true, message:"successfully registered", data:new_user});
+        
+        users.push(new_user);
+        res.status(200).json({success:true, message:"successfully registered", data: new_user.username});
     }
     catch(error){
         res.status(500).json({ success:true, message:"Internal Server Error", error:error.message});
+    }
+});
+
+app.get("/register", async(req, res) => {
+    try{
+        const {username} = req.query;
+        
     }
 });
