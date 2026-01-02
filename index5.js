@@ -17,6 +17,7 @@ app.get("/profile", async(req, res) => {
             age: 38,
             id: 101
         }];
+        
         if(id){
             if(Number(id)){
                 res.status(200).json({success:true, message:"success", data:user});
