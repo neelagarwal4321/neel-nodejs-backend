@@ -119,3 +119,31 @@ app.get("/reviews", async(req, res) => {
 app.listen(3000, () => {
     console.log("The server is running on port 3000.")
 });
+
+
+// Another new API
+
+app.post("/register", (req,res) => {
+    try{
+        const {username, password, confirm_password} = req.body;
+        if(!String(username)){
+            return res.status(400).json({ success: false, message: "Username is required." });
+        }
+        else if(!password || typeof password !== 'string' || password.trim().length === 0){
+            return res.status(400).json({ success: false, message: "Password is required." });
+        }
+        else if(password !== confirm_password){
+            return res.status(400).json({ success: false, message: "Passwords do not match." });
+        }
+        const new_user = [{
+            username,
+            password,
+            confirm_password,
+        }];
+        user.push(new_user);
+        res.status(200).json({success:true, message:"successfully registered", data:new_user});
+    }
+    catch(error){
+        res.status(500).json({ success:true, message:"Internal Server Error", error:error.message});
+    }
+});
