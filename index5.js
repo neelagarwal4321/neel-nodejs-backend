@@ -129,17 +129,17 @@ app.post("/register", (req,res) => {
         const {username, password, confirm_password} = req.body;
 
         if (!username || typeof username !== 'string' || username.trim().length < 3) {
-            return res.status(400).json({ success: false, message: "Username must be at least 3 characters." });
+            return res.status(400).json({success: false, message: "Username must be at least 3 characters."});
         }
         if (!password || typeof password !== 'string' || password.trim().length < 6) {
-            return res.status(400).json({ success: false, message: "Password must be at least 6 characters." });
+            return res.status(400).json({success: false, message: "Password must be at least 6 characters."});
         }
         if (password !== confirm_password) {
-            return res.status(400).json({ success: false, message: "Passwords do not match." });
+            return res.status(400).json({success: false, message: "Passwords do not match."});
         }
 
         if(users.find(u => u.username === username.trim())){
-            return res.status(400).json({ success: false, message:"User already exists." });
+            return res.status(400).json({success: false, message:"User already exists."});
         }
         const new_user = [{
             username: username.trim(),
