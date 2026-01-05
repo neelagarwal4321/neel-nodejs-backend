@@ -77,7 +77,6 @@ app.post("/reviews", (req,res) => {
             rating,
             review_text,
         }];
-
         review.push(new_review);
         res.status(200).json({success:true, message:"successfully given review", data:review});
     }
