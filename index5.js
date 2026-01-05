@@ -143,7 +143,6 @@ app.post("/register", (req,res) => {
             username: username.trim(),
             password,
         }];
-
         users.push(new_user);
         res.status(200).json({success:true, message:"successfully registered", data: new_user.username});
     }
