@@ -46,7 +46,6 @@ app.post("/cart", (req,res) => {
             item,
             qty
         }];
-
         res.status(200).json({success:true, message:"success", data:cart});
     }
     catch(error){
