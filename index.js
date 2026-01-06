@@ -101,6 +101,26 @@ app.post("/chat", (req,res) => {
 
 // creating post and get
 
+const members = [];
+
+app.post("/members", (req, res) => {
+    try{
+
+    }
+    catch{
+
+    }
+});
+
+app.get("/members", async(req, res) => {
+    try{
+
+    }
+    catch{
+        
+    }
+});
+
 app.listen(3000, () => {
     console.log("server is running on port 3000.")
 });
