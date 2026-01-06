@@ -130,7 +130,7 @@ app.post("/members", (req, res) => {
 
 app.get("/members", async(req, res) => {
     try{
-
+        
     }
     catch{
 
