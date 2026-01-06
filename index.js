@@ -130,10 +130,19 @@ app.post("/members", (req, res) => {
 
 app.get("/members", async(req, res) => {
     try{
-        
+        const {name} = req.query;
+        if(name){
+            if(members.find(u => u.name === name.trim())){
+                res.status(200).json({succes: true, message:"member found", data:new_member});
+            }
+            else{
+                return res.status(403).json({success: false, message: "member not found"});
+            }
+        }
+        res.status(200).json({succes: true, message:"success", data:new_member});
     }
-    catch{
-
+    catch(error){
+        res.status(500).json({succes: false, message:"Internal Server Error", error:error.message});
     }
 });
 
