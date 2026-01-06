@@ -53,7 +53,7 @@ app.get("/ages", async(req, res) => {
             id:Date.now(),
             car:"Rolls Royce Ghost"
         }];
-        
+
         if(!user_info){
             res.status(403).json({success: false, message: "The user is not found.."});
         }
@@ -98,6 +98,8 @@ app.post("/chat", (req,res) => {
     }
 });
 
+
+// creating post and get
 
 app.listen(3000, () => {
     console.log("server is running on port 3000.")
