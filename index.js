@@ -105,10 +105,26 @@ const members = [];
 
 app.post("/members", (req, res) => {
     try{
-
+        const {name, position} = req.body;
+        if(!String(name) || typeof name !== 'string'){
+            return res.status(403).json({success: false, message: "not a valid name"});
+        }
+        if(!String(position) || typeof position !== 'string'){
+            return res.status(403).json({success: false, message: "not a valid position"});
+        }
+        if(members.find(u => u.name === name.trim())){
+            return res.status(400).json({success: false, message:"members already exists."});
+        }
+        const new_member = [{
+            name,
+            position,
+            id: Date.now(),
+        }];
+        members.push(new_members);
+        res.status(200).json({succes: true, message:"success", data:new_member});
     }
-    catch{
-
+    catch(error){
+        res.status(500).json({succes: false, message:"Internal Server Error", error:error.message});
     }
 });
 
@@ -117,7 +133,7 @@ app.get("/members", async(req, res) => {
 
     }
     catch{
-        
+
     }
 });
 
