@@ -128,23 +128,36 @@ app.post("/members", (req, res) => {
     }
 });
 
-app.get("/members", async(req, res) => {
+// put api
+
+app.put("/members/:id", (req, res) => {
+    const {id} = req.params; // getting the data for updating the entire object values based on the id/anything
+    const {name, position} = req.body;
+    const member_index = members.findIndex((e) => e.id === id);
+    if(members_index === -1){
+        res.status(404).json({success: false, message:"user not found"});
+    }
+    members[member_index] = {...members[member_index], name:name?? members[member_index].name, position:position?? members[member_index].position};
+    return res.status(200).json({success:true, message:"user found and changed", data:members});
+});
+
+// delete api
+app.delete("/members/:id", (req, res) => {
     try{
-        const {name} = req.query;
-        if(name){
-            if(members.find(u => u.name === name.trim())){
-                res.status(200).json({succes: true, message:"member found", data:members});
-            }
-            else{
-                return res.status(403).json({success: false, message: "member not found"});
-            }
+        const member_index = members.findIndex((e) => e.id === id);
+        if(member_index === -1){
+            res.status(404).json({success: false, message:"user not found"});
         }
-        res.status(200).json({succes: true, message:"success", data:members});
+        const deleted_members = members.splice(members_index, 1);
+        return res.status(200).json({success:true, message:"sex", data:deleted_members[0]});
     }
     catch(error){
-        res.status(500).json({succes: false, message:"Internal Server Error", error:error.message});
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
     }
 });
+
+// get api
+
 
 app.listen(3000, () => {
     console.log("server is running on port 3000.")

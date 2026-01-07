@@ -147,7 +147,7 @@ app.post("/register", (req,res) => {
         res.status(200).json({success:true, message:"successfully registered", data: new_user.username});
     }
     catch(error){
-        res.status(500).json({success:true, message:"Internal Server Error", error:error.message});
+        return res.status(500).json({success:true, message:"Internal Server Error", error:error.message});
     }
 });
 
@@ -164,6 +164,6 @@ app.get("/register", async(req, res) => {
         res.status(200).json({ success: true, data: users.map(u => ({ username: u.username }))});
     }
     catch (error) {
-        res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
+        return res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
 });
