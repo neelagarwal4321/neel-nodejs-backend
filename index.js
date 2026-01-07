@@ -120,7 +120,7 @@ app.post("/members", (req, res) => {
             position,
             id: Date.now(),
         }];
-        members.push(new_members);
+        members.push(new_member);
         res.status(200).json({succes: true, message:"success", data:new_member});
     }
     catch(error){
@@ -134,7 +134,7 @@ app.put("/members/:id", (req, res) => {
     const {id} = req.params; // getting the data for updating the entire object values based on the id/anything
     const {name, position} = req.body;
     const member_index = members.findIndex((e) => e.id === id);
-    if(members_index === -1){
+    if(member_index === -1){
         res.status(404).json({success: false, message:"user not found"});
     }
     members[member_index] = {...members[member_index], name:name?? members[member_index].name, position:position?? members[member_index].position};
