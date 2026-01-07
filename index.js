@@ -157,7 +157,23 @@ app.delete("/members/:id", (req, res) => {
 });
 
 // get api
-
+app.get("/members", async(req, res) => {
+    try{
+        const {name} = req.query; // getting the data based on some query
+        if(name){
+            if(members.find(u => u.name === name.trim())){
+                res.status(200).json({succes: true, message:"member found", data:members});
+            }
+            else{
+                return res.status(403).json({success: false, message: "member not found"});
+            }
+        }
+        res.status(200).json({succes: true, message:"success", data:members});
+    }
+    catch(error){
+        res.status(500).json({succes: false, message:"Internal Server Error", error:error.message});
+    }
+});
 
 app.listen(3000, () => {
     console.log("server is running on port 3000.")
