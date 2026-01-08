@@ -151,6 +151,21 @@ app.post("/register", (req,res) => {
     }
 });
 
+// put api for this route
+
+app.put("/register", (req, res) => {
+	const {username} = req.params;
+	const {password} = req.body;
+	const user_index = user.findIndex((e) => e.username === username.trim());
+	if(user_index === -1){
+		res.status(404).json({sucess:false, message:"user not found"});
+	}
+    users[user_index] = {...users[user_index], password:password?? users[user_index].password};
+    return res.status(200).json({sucess:true, message:"user found", data:users});
+});
+
+
+
 app.get("/register", async(req, res) => {
     try{
         const {username} = req.query;
