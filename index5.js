@@ -153,10 +153,10 @@ app.post("/register", (req,res) => {
 
 // put api for this route
 
-app.put("/register", (req, res) => {
+app.put("/register/:username", (req, res) => {
 	const {username} = req.params;
 	const {password} = req.body;
-	const user_index = user.findIndex((e) => e.username === username.trim());
+	const user_index = users.findIndex((e) => e.username === username.trim());
 	if(user_index === -1){
 		res.status(404).json({sucess:false, message:"user not found"});
 	}
@@ -164,7 +164,21 @@ app.put("/register", (req, res) => {
     return res.status(200).json({sucess:true, message:"user found", data:users});
 });
 
+// delete api for this route
 
+app.delete("/register/:id", (req, res) => {
+    try{
+        const user_index = users.findIndex((e) => e.username === username.trim());
+        if(user_index === -1){
+            res.status(404).json({sucess:false, message:"user not found"});
+        }
+        const deleted_user = users.splice(user_index, 1);
+        return res.status(200).json({success:true, message:"user deleted", data:users});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"internal server error", error:error.message});
+    }
+});
 
 app.get("/register", async(req, res) => {
     try{

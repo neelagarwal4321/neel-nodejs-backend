@@ -148,8 +148,8 @@ app.delete("/members/:id", (req, res) => {
         if(member_index === -1){
             res.status(404).json({success: false, message:"user not found"});
         }
-        const deleted_members = members.splice(members_index, 1);
-        return res.status(200).json({success:true, message:"success", data:deleted_members[0]});
+        const deleted_members = members.splice(member_index, 1);
+        return res.status(200).json({success:true, message:"member deleted", data:deleted_members[0]});
     }
     catch(error){
         return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
