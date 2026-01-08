@@ -131,7 +131,7 @@ app.post("/members", (req, res) => {
 // put api
 
 app.put("/members/:id", (req, res) => {
-    const {id} = req.params; // getting the data for updating the entire object values based on the id/anything
+    const {id} = req.params; // using the parameter/item to get the objects and it's remaining items
     const {name, position} = req.body;
     const member_index = members.findIndex((e) => e.id === id);
     if(member_index === -1){
