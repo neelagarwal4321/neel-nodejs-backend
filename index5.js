@@ -180,6 +180,8 @@ app.delete("/register/:id", (req, res) => {
     }
 });
 
+// patch api for this route (waiting)
+
 app.get("/register", async(req, res) => {
     try{
         const {username} = req.query;
