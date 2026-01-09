@@ -167,7 +167,7 @@ app.put("/register/:username", (req, res) => {
 
 // delete api for this route
 
-app.delete("/register/:id", (req, res) => {
+app.delete("/register/:username", (req, res) => {
     try{
         const user_index = users.findIndex((e) => e.username === username.trim());
         if(user_index === -1){
