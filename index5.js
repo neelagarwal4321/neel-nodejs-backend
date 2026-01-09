@@ -174,7 +174,7 @@ app.delete("/register/:id", (req, res) => {
             res.status(404).json({sucess:false, message:"user not found"});
         }
         const deleted_user = users.splice(user_index, 1);
-        return res.status(200).json({success:true, message:"user deleted", data:users});
+        return res.status(200).json({success:true, message:"user deleted", data:deleted_user});
     }
     catch(error){
         return res.status(500).json({success:false, message:"internal server error", error:error.message});
