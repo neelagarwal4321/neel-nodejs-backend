@@ -122,6 +122,7 @@ app.listen(3000, () => {
 // Another new API
 const users = [];
 
+// post api for register route
 app.post("/register", (req,res) => {
     try{
         const {username, password, confirm_password} = req.body;
