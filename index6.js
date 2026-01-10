@@ -10,6 +10,15 @@ app.post("/electives", (req, res) => {
 
     }
     catch(error){
+
+    }
+});
+
+app.get("/electives", async(req, res) => {
+    try{
+        
+    }
+    catch(error){
         
     }
 });
