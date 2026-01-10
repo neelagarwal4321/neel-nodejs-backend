@@ -56,3 +56,9 @@ app.delete("/electives", (req, res) => {
 
     }
 });
+
+
+
+app.listen(8000, () => {
+    console.log("The Server is running on port 8000.");
+});

@@ -114,11 +114,6 @@ app.get("/reviews", async(req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log("The server is running on port 3000.")
-});
-
-
 // Another new API
 const users = [];
 
@@ -198,4 +193,8 @@ app.get("/register", async(req, res) => {
     catch (error) {
         return res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
+});
+
+app.listen(3000, () => {
+    console.log("The server is running on port 3000.")
 });
