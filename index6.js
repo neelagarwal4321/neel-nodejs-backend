@@ -5,9 +5,30 @@ app.use(express.json);
 
 // restful api
 
+const electives = [];
+
 app.post("/electives", (req, res) => {
     try{
-
+        const {name, code, credits} = req.body;
+        if(!String(name) || name.trim().length === 0){
+            res.status(404).json({success:false, message:"wrong subject"});
+        }
+        if(!String(code) || code.trim().length === 0){
+            res.status(404).json({success:false, message:"wrong subject code"});
+        }
+        if(Number(credits) === undefined || Number(credits) > 4 ){
+            res.status(404).json({success:false, message:"enter valid credits"});
+        }
+        if(electives.find((e) => e.code === code)){
+            res.status(404).json({success:false, message:"subject already exists"});
+        }
+        const new_elective =[{
+            name,
+            code,
+            credits
+        }];
+        electives.push(new_elective);
+        res.status(200).json({success:true, message:"successfully added elective subject", data:electives});
     }
     catch(error){
 
@@ -32,6 +53,6 @@ app.delete("/electives", (req, res) => {
 
     }
     catch(error){
-        
+
     }
 });
