@@ -27,3 +27,11 @@ app.put("/electives", (req, res) => {
 
 });
 
+app.delete("/electives", (req, res) => {
+    try{
+
+    }
+    catch(error){
+        
+    }
+});
