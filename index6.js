@@ -19,6 +19,11 @@ app.get("/electives", async(req, res) => {
         
     }
     catch(error){
-        
+
     }
 });
+
+app.put("/electives", (req, res) => {
+
+});
+
