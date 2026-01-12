@@ -69,6 +69,8 @@ app.put("/electives", (req, res) => {
     return res.status(200).json({sucess:true, message:"subject found", data:electives});
 });
 
+// delete comment
+
 app.delete("/electives", (req, res) => {
     try{
         const subject_index = electives.findIndex((e) => e.code === code);
