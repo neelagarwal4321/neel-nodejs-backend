@@ -37,11 +37,17 @@ app.post("/electives", (req, res) => {
 
 app.get("/electives", async(req, res) => {
     try{
-        
+        const {code} = req.query;
+        if(code){
+            const code_subject = electives.find((e) => e.code === code);
+            if(!code_subject){
+                res.status(404).json({success:false, message:"User not found"});
+            }
+            return res.status(200).json({success: true, data: {code: code_subject.code}});
+        }
+        return res.status(200).json({success: true, data: {code: code_subject.code}});
     }
-    catch(error){
-
-    }
+    
 });
 
 app.put("/electives", (req, res) => {
