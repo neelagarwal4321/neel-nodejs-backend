@@ -37,7 +37,7 @@ app.post("/electives", (req, res) => {
     }
 });
 
-//get comment
+//get comment 
 
 app.get("/electives", async(req, res) => {
     try{
