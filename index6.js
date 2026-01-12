@@ -7,6 +7,8 @@ app.use(express.json);
 
 const electives = [];
 
+// post api
+
 app.post("/electives", (req, res) => {
     try{
         const {name, code, credits} = req.body;
