@@ -37,7 +37,7 @@ app.post("/electives", (req, res) => {
     }
 });
 
-// put comment 
+// put api 
 
 app.put("/electives", (req, res) => {
     const {code} = req.params;
@@ -50,7 +50,7 @@ app.put("/electives", (req, res) => {
     return res.status(200).json({sucess:true, message:"subject found", data:electives});
 });
 
-// delete comment
+// delete api
 
 app.delete("/electives", (req, res) => {
     try{
@@ -66,7 +66,7 @@ app.delete("/electives", (req, res) => {
     }
 });
 
-//get comment 
+//get api 
 
 app.get("/electives", async(req, res) => {
     try{
