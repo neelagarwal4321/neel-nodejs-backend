@@ -37,6 +37,8 @@ app.post("/electives", (req, res) => {
     }
 });
 
+//get comment
+
 app.get("/electives", async(req, res) => {
     try{
         const {code} = req.query;
