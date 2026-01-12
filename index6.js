@@ -65,10 +65,15 @@ app.put("/electives", (req, res) => {
 
 app.delete("/electives", (req, res) => {
     try{
-
+        const subject_index = electives.findIndex((e) => e.code === code);
+        if(subject_index === -1){
+            res.status(404).json({sucess:false, message:"subject not found"});
+        }
+        const deleted_subject = electives.splice(subject_index, 1);
+        return res.status(200).json({success:true, message:"subject deleted", data:deleted_subject});
     }
     catch(error){
-
+        return res.status(500).json({success:false, message: "Internal Server Error", error: error.message});
     }
 });
 
