@@ -37,25 +37,6 @@ app.post("/electives", (req, res) => {
     }
 });
 
-//get comment 
-
-app.get("/electives", async(req, res) => {
-    try{
-        const {code} = req.query;
-        if(code){
-            const code_subject = electives.find((e) => e.code === code);
-            if(!code_subject){
-                res.status(404).json({success:false, message:"User not found"});
-            }
-            return res.status(200).json({success: true, data: {code: electives.code}});
-        }
-        return res.status(200).json({success: true, data: {code: electives.code}});
-    }
-    catch(error){
-        return res.status(500).json({success:false, message: "Internal Server Error", error: error.message});
-    }
-});
-
 // put comment 
 
 app.put("/electives", (req, res) => {
@@ -85,7 +66,24 @@ app.delete("/electives", (req, res) => {
     }
 });
 
+//get comment 
 
+app.get("/electives", async(req, res) => {
+    try{
+        const {code} = req.query;
+        if(code){
+            const code_subject = electives.find((e) => e.code === code);
+            if(!code_subject){
+                res.status(404).json({success:false, message:"User not found"});
+            }
+            return res.status(200).json({success: true, data: {code: electives.code}});
+        }
+        return res.status(200).json({success: true, data: {code: electives.code}});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message: "Internal Server Error", error: error.message});
+    }
+});
 
 app.listen(8000, () => {
     console.log("The Server is running on port 8000.");
