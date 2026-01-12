@@ -56,7 +56,7 @@ app.get("/electives", async(req, res) => {
     }
 });
 
-// put comment
+// put comment 
 
 app.put("/electives", (req, res) => {
     const {code} = req.params;
