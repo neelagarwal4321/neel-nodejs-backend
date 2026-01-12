@@ -135,10 +135,10 @@ app.post("/register", (req,res) => {
         if(users.find(u => u.username === username.trim())){
             return res.status(400).json({success: false, message:"User already exists."});
         }
-        const new_user = [{
+        const new_user = {
             username: username.trim(),
             password,
-        }];
+        };
         users.push(new_user);
         res.status(200).json({success:true, message:"successfully registered", data: new_user.username});
     }
