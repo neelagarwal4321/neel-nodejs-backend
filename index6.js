@@ -112,6 +112,8 @@ app.get("/electives/:code", async(req, res) => {
     }
 });
 
+// server running on port 8000.
+
 app.listen(8000, () => {
     console.log("The Server is running on port 8000.");
 });
