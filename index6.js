@@ -99,7 +99,7 @@ app.get("/electives/:code", async(req, res) => {
         const {code} = req.query;
         if(code){
             if(electives.find((e) => e.code === code)){
-                res.status(200).json({success:true, message:"Subject found", data:electives});
+                return res.status(200).json({success:true, message:"Subject found", data:electives});
             }
             else{
                 return res.status(403).json({success: false, message: "Subject not found"});

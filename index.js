@@ -162,7 +162,7 @@ app.get("/members", async(req, res) => {
         const {name} = req.query; // getting the data based on some query
         if(name){
             if(members.find(u => u.name === name.trim())){
-                res.status(200).json({succes: true, message:"member found", data:members});
+                return res.status(200).json({succes: true, message:"member found", data:members});
             }
             else{
                 return res.status(403).json({success: false, message: "member not found"});
