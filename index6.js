@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-// restful api
+// A COMPLETE RESTFUL API DESIGN FROM SCRATCH....
 
 const electives = [];
 
