@@ -102,10 +102,10 @@ app.get("/electives/:code", async(req, res) => {
                 return res.status(200).json({success:true, message:"Subject found", data:electives});
             }
             else{
-                return res.status(403).json({success: false, message: "Subject not found"});
+                res.status(403).json({success: false, message: "Subject not found"});
             }
         }
-        
+        return res.status(200).json({success:true, message:"Subject found", data:electives});
     }
     catch(error){
         return res.status(500).json({success:false, message: "Internal Server Error", error: error.message});
