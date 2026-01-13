@@ -96,7 +96,7 @@ app.delete("/electives/:code", (req, res) => {
 
 app.get("/electives/:code", async(req, res) => {
     try{
-        const {code} = req.query;
+        const {code} = req.params;
         if(code){
             if(electives.find((e) => e.code === code)){
                 return res.status(200).json({success:true, message:"Subject found", data:electives});
