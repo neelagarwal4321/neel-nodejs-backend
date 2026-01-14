@@ -37,7 +37,7 @@ app.post("/electives", (req, res) => {
     }
 });
 
-// patch api
+// patch api for the route electives
 
 app.patch("/electives/:code", (req, res) => {
     try{
