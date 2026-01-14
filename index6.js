@@ -92,7 +92,7 @@ app.delete("/electives/:code", (req, res) => {
     }
 });
 
-//get api 
+//get api for the route electives
 
 app.get("/electives/:code", async(req, res) => {
     try{
