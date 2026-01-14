@@ -63,7 +63,7 @@ app.patch("/electives/:code", (req, res) => {
     }
 });
 
-// put api 
+// put api for the route electives
 
 app.put("/electives/:code", (req, res) => {
     const {code} = req.params;
