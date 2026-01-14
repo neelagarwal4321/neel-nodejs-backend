@@ -76,7 +76,7 @@ app.put("/electives/:code", (req, res) => {
     return res.status(200).json({success:true, message:"subject found", data:electives});
 });
 
-// delete api
+// delete api for the route electives
 
 app.delete("/electives/:code", (req, res) => {
     try{
