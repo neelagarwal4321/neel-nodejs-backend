@@ -7,7 +7,7 @@ app.use(express.json());
 
 const electives = [];
 
-// post api
+// post api for the route electives
 
 app.post("/electives", (req, res) => {
     try{
