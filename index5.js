@@ -147,6 +147,29 @@ app.post("/register", (req,res) => {
     }
 });
 
+// patch api for this route
+
+app.patch("/register/:username", (req, res) => {
+    try{
+        const {username} = req.params;
+        const {password} = req.body;
+        const user_index = users.findIndex((e) => e.username === username);
+        if(user_index === -1){
+            res.status(404).json({sucess:false, message:"user not found"});
+        }
+        if(!password){
+            res.status(404).json({sucess:false, message:"user not found"});
+        }
+        if(password){
+            users[user_index].password = password;
+        }
+        return res.status(200).json({success:true, message:"user updated", data:users});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"internal server error", error:error.message});
+    }
+});
+
 // put api for this route
 
 app.put("/register/:username", (req, res) => {
