@@ -88,7 +88,14 @@ app.post("/reviews", (req,res) => {
 // put api for this route
 
 app.put("/reviews/:user_id", (req,res) => {
-    const {}
+    const {user_id} = req.params;
+    const {movie_title, rating, review_text} = req.body;
+    const review_index = review.findIndex((e) => e.user_id === user_id);
+    if(review_index == -1){
+        res.status(400).json({success:false, message:"review not found"});
+    } 
+    review[review_index] = {...review[review_index], movie_title:movie_title?? review[review_index].movie_title, rating:rating?? review[review_index].rating, review_text:review_text?? review[review_index.review_text]};
+    return res.status(200).json({success:true, message:"review updated", data:users});
 });
 
 // delete api /review/user_id route.
