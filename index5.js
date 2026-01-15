@@ -85,6 +85,12 @@ app.post("/reviews", (req,res) => {
     }
 });
 
+// put api for this route
+
+app.put("/reviews/:user_id", (req,res) => {
+    const {}
+});
+
 // delete api /review/user_id route.
 
 app.delete("/reviews/:user_id", (req, res) => {
@@ -95,8 +101,8 @@ app.delete("/reviews/:user_id", (req, res) => {
         if(reviewIndex === -1){
             return res.status(404).json({success: false, message: "Review not found."});
         }
-        review.splice(reviewIndex, 1);
-        res.status(200).json({success: true, message: "Review deleted successfully"});
+        const deleted_review = review.splice(reviewIndex, 1);
+        return res.status(200).json({success: true, message: "Review deleted successfully", data:deleted_review});
     }
     catch(error){
         res.status(500).json({success:true, message: "Internal Server Error..", error:error.message});
