@@ -11,19 +11,7 @@ const electives = [];
 
 app.post("/electives", (req, res) => {
     try{
-        const {name, code, credits} = req.body;
-        if(!String(name) || name.trim().length === 0){
-            res.status(400).json({success:false, message:"wrong subject"});
-        }
-        if(!String(code) || code.trim().length === 0){
-            res.status(400).json({success:false, message:"wrong subject code"});
-        }
-        if(typeof credits !== "number" || credits <= 0 || credits >= 4){
-            res.status(400).json({success:false, message:"enter valid credits"});
-        }
-        if(electives.find((e) => e.code === code)){
-            res.status(400).json({success:false, message:"subject already exists"});
-        }
+        
         const new_elective =[{
             name,
             code,
