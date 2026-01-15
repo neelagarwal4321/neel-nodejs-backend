@@ -40,24 +40,7 @@ app.post("/electives", (req, res) => {
 // patch api for the route electives
 
 app.patch("/electives/:code", (req, res) => {
-    try{
-        const {code} = req.params;
-        const {name, credits} = req.body;
-        const subject_index = electives.findIndex((e) => e.code === code);
-        if(subject_index === -1){
-            res.status(404).json({success:false, message:"subject not found"});
-        }
-        if(!name && !credits){
-            res.status(404).json({success:false, message:"subject not found"});
-        }
-        if(name){
-            electives[subject_index].name = name;
-        }
-        if(credits){
-            electives[subject_index].credits = credits;
-        }
-        return res.status(200).json({success:true, message:"subject updated", data:electives});
-    }
+    
     catch(error){
         return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
     }
@@ -80,6 +63,7 @@ app.put("/electives/:code", (req, res) => {
 
 app.delete("/electives/:code", (req, res) => {
     try{
+        const {code} = req.params;
         const subject_index = electives.findIndex((e) => e.code === code);
         if(subject_index === -1){
             res.status(404).json({success:false, message:"subject not found"});
