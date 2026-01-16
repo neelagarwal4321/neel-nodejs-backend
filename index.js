@@ -131,6 +131,24 @@ app.post("/members", (req, res) => {
 // patch api
 
 app.patch("/members/:id", (req, res) => {
+    try{
+        const {id} = req.params;
+        const {name, position} = req.body;
+        const member_index = members.findIndex((e) => e.id === id);
+        if(member_index === -1){
+            res.status(400).json({success:false, message:"member not found"});
+        }
+        if(!name && !position){
+            res.status(400).json({success:false, message:"member not found"});
+        }
+        if(name){
+            members[member_index].name = name;
+        }
+        if(position){
+            members[member_index].position = position;
+        }
+        return res.status(200).json({success:true, message:"member details updated", data:members});
+    }
     
 });
 
