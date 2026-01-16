@@ -89,11 +89,26 @@ app.post("/reviews", (req,res) => {
 
 app.patch("/reviews/:user_id", (req, res) => {
     try{
-
-    }
-    catch(error){
-        
-    }
+        const {user_id} = req.params;
+        const {movie_title, rating, review_text} = req.body;
+        const review_index = review.findIndex((e) => e.user_id === user_id);
+        if(review_index === -1){
+            res.status(400).json({success:false, message:"review not found"});
+        }
+        if(!movie_title && !rating && !review_text){
+            res.status(400).json({success:false, message:"review not found"});
+        }
+        if(movie_title){
+            review[review_index].movie_title = movie_title;
+        }
+        if(rating){
+            review[review_index].rating = rating;
+        }
+        if(review_text){
+            review[review_index].review_text = review_text;
+        }
+        return res.status(200).json({success:true, message:"review found and updated", data:review});
+    
 });
 
 // put api for this route
