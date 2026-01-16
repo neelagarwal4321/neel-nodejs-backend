@@ -108,7 +108,10 @@ app.patch("/reviews/:user_id", (req, res) => {
             review[review_index].review_text = review_text;
         }
         return res.status(200).json({success:true, message:"review found and updated", data:review});
-    
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 // put api for this route
