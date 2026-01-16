@@ -99,7 +99,7 @@ app.post("/chat", (req,res) => {
 });
 
 
-// creating post, put, delete and get
+// creating post, patch, put, delete and get
 
 const members = [];
 
