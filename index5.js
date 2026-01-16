@@ -85,6 +85,17 @@ app.post("/reviews", (req,res) => {
     }
 });
 
+// patch api for this route
+
+app.patch("/reviews/:user_id", (req, res) => {
+    try{
+
+    }
+    catch(error){
+        
+    }
+});
+
 // put api for this route
 
 app.put("/reviews/:user_id", (req,res) => {
