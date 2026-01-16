@@ -128,6 +128,12 @@ app.post("/members", (req, res) => {
     }
 });
 
+// patch api
+
+app.patch("/members/:id", (req, res) => {
+    
+});
+
 // put api
 
 app.put("/members/:id", (req, res) => {
