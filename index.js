@@ -90,7 +90,7 @@ app.post("/chat", (req,res) => {
             text,
             id: Date.now()
         }];
-        chat.push(new_user);
+        chat.push(new_chat);
         res.status(200).json({sucess:true, message:"Successfully text sent", data:chat});
     }
     catch(error){
