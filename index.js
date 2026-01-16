@@ -149,7 +149,9 @@ app.patch("/members/:id", (req, res) => {
         }
         return res.status(200).json({success:true, message:"member details updated", data:members});
     }
-    
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 // put api
