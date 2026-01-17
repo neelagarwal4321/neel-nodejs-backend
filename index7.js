@@ -86,7 +86,7 @@ app.patch("/movies/:id", (req, res) => {
         if(genre){
             movies[movies_index].genre = genre; 
         }
-         res.status(200).json({success:true, message:"movie details edited and updated", data:movies});
+        return res.status(200).json({success:true, message:"movie details edited and updated individually", data:movies});
     }
     catch(error){
         return res.status(400).json({success:false, message:"Internal Server Error", error:error.message});
@@ -96,7 +96,14 @@ app.patch("/movies/:id", (req, res) => {
 // put api movies route
 
 app.put("/movies/:id", (req, res) => {
-
+    const {id} = req.params;
+    const {name, genre} = req.body;
+    const movies_index = movies.findIndex((m) => m.id === id);
+    if(movies_index === -1){
+        res.status(404).json({success:false, message:"Movie not found"});
+    }
+    movies[movies_index] = {...movies[movies_index], name:name?? movies[movies_index].name, genre:genre?? movies[movies_index].genre};
+    return res.status(200).json({success:true, message:"movie details edited and updated completely", data:movies});
 });
 
 // delete api movies route
