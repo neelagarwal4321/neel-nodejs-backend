@@ -56,7 +56,11 @@ app.put("/movies/:id", (req, res) => {
 // delete api movies route
 
 app.delete("/movies/:id", (req, res) => {
-    
+
 });
 
 // get api movies route
+
+app.get("/movies/:id", (req, res) => {
+
+});
