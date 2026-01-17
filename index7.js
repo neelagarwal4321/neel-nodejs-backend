@@ -37,6 +37,10 @@ app.get("/members", async(req, res) => {
 
 // post api movies route
 
+app.post("/movies", (req, res) => {
+    
+});
+
 // patch api movies route
 
 // put api movies route
