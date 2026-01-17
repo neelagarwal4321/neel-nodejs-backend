@@ -64,3 +64,8 @@ app.delete("/movies/:id", (req, res) => {
 app.get("/movies/:id", (req, res) => {
 
 });
+
+
+app.listen(8000, () => {
+    consol.log("The server is running on port 8000.")
+});
