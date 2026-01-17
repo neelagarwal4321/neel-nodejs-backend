@@ -6,32 +6,32 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/members", async(req, res) => {
-    try{
-        const {name} = req.query;
-        const member = [{
-            name: "Neel",
-            age: 23,
-            house: "Gryffindor"
-        }, {
-            name: "Riya",
-            age: "23",
-            house: "Slytherin"
-        }];
-        if(!member){
-            res.status(400).json({success:false, message:"the member is not found"});
-        }
-        if(name){
-            if(String(name) || typeof name === 'string'){
-                return res.status(200).json({success:true, message:"the member is present", data:member});
-            }
-        }
-        return res.status(200).json({success:true, message:"the member is present", data:member});
-    }
-    catch(error){
-        return res.status(500).json({success:false, message:"Internal Server Error", data:error.message});
-    }
-});
+// app.get("/members", async(req, res) => {
+//     try{
+//         const {name} = req.query;
+//         const member = [{
+//             name: "Neel",
+//             age: 23,
+//             house: "Gryffindor"
+//         }, {
+//             name: "Riya",
+//             age: "23",
+//             house: "Slytherin"
+//         }];
+//         if(!member){
+//             res.status(400).json({success:false, message:"the member is not found"});
+//         }
+//         if(name){
+//             if(String(name) || typeof name === 'string'){
+//                 return res.status(200).json({success:true, message:"the member is present", data:member});
+//             }
+//         }
+//         return res.status(200).json({success:true, message:"the member is present", data:member});
+//     }
+//     catch(error){
+//         return res.status(500).json({success:false, message:"Internal Server Error", data:error.message});
+//     }
+// });
 
 // restful api for the movies route
 
@@ -48,7 +48,7 @@ app.post("/movies", (req, res) => {
         if(!String(id) || typeof id !== 'string' || id.trim().length === 0){
             res.status(400).json({success:false, message:"not a valid movie id"});
         }
-        if(!String(genre) || typeof genre !== 'string' || genre.trim().length === 0 || String(genre) !== "Action" || String(genre) !== "Comedy" || String(genre) !== "Horror" || String(genre) !== "Sci-Fi"){
+        if(!String(genre) || typeof genre !== 'string'){
             res.status(400).json({success:false, message:"not a valid movie genre"});
         }
         if(movies.find((m) => m.id === id)){
@@ -73,7 +73,7 @@ app.patch("/movies/:id", (req, res) => {
     try{
         const {id} = req.params;
         const {name, genre} = req.body;
-        const movies_index = movies.findIndex((m) => m.id === id);
+        const movies_index = movies.findIndex((e) => e.id === id);
         if(movies_index === -1){
             res.status(404).json({success:false, message:"Movie not found"});
         }
@@ -125,22 +125,42 @@ app.delete("/movies/:id", (req, res) => {
 
 // get api movies route
 
-app.get("/movies/:id", async(req, res) => {
-    try{
-        const {id} = req.params;
-        if(!id){
-            res.status(400).json({success:false, message:"Please enter a valid id"});
+app.get("/movies/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({
+                success: false,
+                message: "Please enter a valid id"
+            });
         }
-        const movies_index = movies.findIndex((m) => m.id === id);
-        if(movies_index === -1){
-            res.status(404).json({success:false, message:"Movie not found"});
+
+        const movieId = Number(id);
+        const movies_index = movies.findIndex(m => m.id === movieId);
+
+        if (movies_index === -1) {
+            return res.status(404).json({
+                success: false,
+                message: "Movie not found"
+            });
         }
-        return res.status(200).json({success:false, message:"Success", data:movies});
-    }
-    catch(error){
-        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+
+        return res.status(200).json({
+            success: true,
+            message: "Success",
+            data: movies[movies_index]
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            error: error.message
+        });
     }
 });
+
 
 app.get("/movies", (req, res) => {
     try{
@@ -153,5 +173,5 @@ app.get("/movies", (req, res) => {
 
 
 app.listen(8000, () => {
-    consol.log("The server is running on port 8000.")
+    console.log("The server is running on port 8000.")
 });
