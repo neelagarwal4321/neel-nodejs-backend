@@ -38,10 +38,14 @@ app.get("/members", async(req, res) => {
 // post api movies route
 
 app.post("/movies", (req, res) => {
-    
+
 });
 
 // patch api movies route
+
+app.patch("/movies/:id", (req, res) => {
+
+});
 
 // put api movies route
 
