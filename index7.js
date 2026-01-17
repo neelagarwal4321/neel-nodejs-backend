@@ -49,6 +49,10 @@ app.patch("/movies/:id", (req, res) => {
 
 // put api movies route
 
+app.put("/movies/:id", (req, res) => {
+
+});
+
 // delete api movies route
 
 // get api movies route
