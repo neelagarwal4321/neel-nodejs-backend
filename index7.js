@@ -51,6 +51,9 @@ app.post("/movies", (req, res) => {
         if(!String(genre) || typeof genre !== 'string' || genre.trim().length === 0 || String(genre) !== "Action" || String(genre) !== "Comedy" || String(genre) !== "Horror" || String(genre) !== "Sci-Fi"){
             res.status(400).json({success:false, message:"not a valid movie genre"});
         }
+        if(movies.find((m) => m.id === id)){
+            res.status(400).json({success:false, message:"movie already present abd exists"});
+        }
         const new_movie = [{
             name,
             id,
@@ -67,7 +70,27 @@ app.post("/movies", (req, res) => {
 // patch api movies route
 
 app.patch("/movies/:id", (req, res) => {
-
+    try{
+        const {id} = req.params;
+        const {name, genre} = req.body;
+        const movies_index = movies.findIndex((m) => m.id === id);
+        if(movies_index === -1){
+            res.status(404).json({success:false, message:"Movie not found"});
+        }
+        if(!name && !genre){
+            res.status(404).json({success:false, message:"Movie not found"});
+        }
+        if(name){
+            movies[movies_index].name = name; 
+        }
+        if(genre){
+            movies[movies_index].genre = genre; 
+        }
+         res.status(200).json({success:true, message:"movie details edited and updated", data:movies});
+    }
+    catch(error){
+        return res.status(400).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 // put api movies route
