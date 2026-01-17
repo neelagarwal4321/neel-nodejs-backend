@@ -48,7 +48,7 @@ app.patch("/electives/:code", (req, res) => {
             res.status(404).json({success:false, message:"subject not found"});
         }
         if(!name && !credits){
-            res.status(404).json({success:false, message:"subject not found"});
+            res.status(404).json({success:false, message:"any one of the item is required"});
         }
         if(name){
             electives[subject_index].name = name;

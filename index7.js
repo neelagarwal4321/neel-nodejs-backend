@@ -63,9 +63,9 @@ app.post("/movies", (req, res) => {
         return res.status(200).json({success:true, message:"The movie is added successfully", data:movies});
     }
     catch(error){
-        return res.status(400).json({success:false, message:"Internal Server Error", error:error.message});
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
     }
-});
+}); 
 
 // patch api movies route
 
@@ -78,7 +78,7 @@ app.patch("/movies/:id", (req, res) => {
             res.status(404).json({success:false, message:"Movie not found"});
         }
         if(!name && !genre){
-            res.status(404).json({success:false, message:"Movie not found"});
+            res.status(400).json({success:false, message:"Any one of the above field."});
         }
         if(name){
             movies[movies_index].name = name; 
@@ -89,7 +89,7 @@ app.patch("/movies/:id", (req, res) => {
         return res.status(200).json({success:true, message:"movie details edited and updated individually", data:movies});
     }
     catch(error){
-        return res.status(400).json({success:false, message:"Internal Server Error", error:error.message});
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
     }
 });
 
@@ -109,13 +109,46 @@ app.put("/movies/:id", (req, res) => {
 // delete api movies route
 
 app.delete("/movies/:id", (req, res) => {
-
+    try{
+        const {id} = req.params;
+        const movies_index = movies.findIndex((m) => m.id === id);
+        if(movies_index === -1){
+            res.status(404).json({success:false, message:"Movie not found"});
+        }
+        const deleted_movie = movies.splice(movies_index, 1);
+        return res.status(200).json({success:true, message:"Movie deleted successfully", data:deleted_movie});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 // get api movies route
 
-app.get("/movies/:id", (req, res) => {
+app.get("/movies/:id", async(req, res) => {
+    try{
+        const {id} = req.params;
+        if(!id){
+            res.status(400).json({success:false, message:"Please enter a valid id"});
+        }
+        const movies_index = movies.findIndex((m) => m.id === id);
+        if(movies_index === -1){
+            res.status(404).json({success:false, message:"Movie not found"});
+        }
+        return res.status(200).json({success:false, message:"Success", data:movies});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
+});
 
+app.get("/movies", (req, res) => {
+    try{
+        return res.status(200).json({success:true, message:"The movie is added successfully", data:movies});
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 
