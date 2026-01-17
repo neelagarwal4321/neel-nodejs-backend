@@ -33,3 +33,14 @@ app.get("/members", async(req, res) => {
     }
 });
 
+// restful api for the movies route
+
+// post api movies route
+
+// patch api movies route
+
+// put api movies route
+
+// delete api movies route
+
+// get api movies route
