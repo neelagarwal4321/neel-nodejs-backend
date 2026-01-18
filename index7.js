@@ -131,8 +131,8 @@ app.get("/movies/:id", async (req, res) => {
         if(!id){
             return res.status(400).json({success: false, message: "Please enter a valid id"});
         }
-        const movieId = Number(id);
-        const movies_index = movies.findIndex(m => m.id === movieId);
+        const movieId = String(id);
+        const movies_index = movies.findIndex(m => m.id === movieId.trim());
         if(movies_index === -1){
             return res.status(404).json({success: false, message: "Movie not found"});
         }
