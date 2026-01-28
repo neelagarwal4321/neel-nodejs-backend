@@ -48,5 +48,10 @@ app.delete("/boxing", (req, res) => {
 // get api
 
 app.get("/boxing", async(req, res) => {
+    try{
 
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
