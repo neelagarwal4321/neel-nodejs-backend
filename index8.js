@@ -26,7 +26,11 @@ app.put("/boxing", (req, res) => {
 // delete api
 
 app.delete("/boxing", (req, res) => {
-    
+
 });
 
 // get api
+
+app.get("/boxing", async(req, res) => {
+    
+});
