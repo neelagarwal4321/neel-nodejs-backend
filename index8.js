@@ -20,7 +20,12 @@ app.post("/boxing", (req, res) => {
 // patch api
 
 app.patch("/boxing", (req, res) => {
+    try{
 
+    }
+    catch(error){
+        return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
+    }
 });
 
 // put api
