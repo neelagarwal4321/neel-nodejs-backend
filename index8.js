@@ -14,10 +14,14 @@ app.post("/boxing", (req, res) => {
 // patch api
 
 app.patch("/boxing", (req, res) => {
-    
+
 });
 
 // put api
+
+app.put("/boxing", (req, res) => {
+
+});
 
 // delete api
 
