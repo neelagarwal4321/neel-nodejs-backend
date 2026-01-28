@@ -41,7 +41,7 @@ app.patch("/boxing/:id", (req, res) => {
     try{
         const {id} = req.params;
         const {name,age} = req.body;
-        boxers_index = boxers.findIndex((e) => e.id === id);
+        const boxers_index = boxers.findIndex((e) => e.id === id);
         if(boxers_index === -1){
             return res.status(404).json({success:false, message:"Boxer not found"});
         }
@@ -66,7 +66,7 @@ app.patch("/boxing/:id", (req, res) => {
 app.put("/boxing/:id", (req, res) => {
     const {id} = req.params;
     const {name, age} = req.body;
-    boxers_index = boxers.findIndex((e) => e.id === id);
+    const boxers_index = boxers.findIndex((e) => e.id === id);
     if(boxers_index === -1){
         return res.status(404).json({success:false, message:"Boxer not found"});
     }
@@ -78,6 +78,7 @@ app.put("/boxing/:id", (req, res) => {
 
 app.delete("/boxing", (req, res) => {
     try{
+        const {id} = req.params;
         
     }
     catch(error){
