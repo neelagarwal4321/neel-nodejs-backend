@@ -25,4 +25,8 @@ app.put("/boxing", (req, res) => {
 
 // delete api
 
+app.delete("/boxing", (req, res) => {
+    
+});
+
 // get api
