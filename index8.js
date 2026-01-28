@@ -79,7 +79,12 @@ app.put("/boxing/:id", (req, res) => {
 app.delete("/boxing", (req, res) => {
     try{
         const {id} = req.params;
-        
+        const boxers_index = boxers.findIndex((e) => e.id === id);
+        if(boxers_index === -1){
+            return res.status(404).json({success:false, message:"Boxer not found"});
+        }
+        const deleted_boxers = boxers.splice(boxers_index, 1);
+        return res.status(200).json({success:true, message:"Boxer deleted successfully", data:deleted_boxers});
     }
     catch(error){
         return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
