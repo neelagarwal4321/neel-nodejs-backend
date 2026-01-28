@@ -14,13 +14,13 @@ app.post("/boxing", (req, res) => {
     try{
         const {name, age} = req.body;
         if(!String(name) || typeof name !== 'string' || name.trim().length === 0){
-            return res.status(404).json({success:false, message:"Give a valid name"});
+            return res.status(400).json({success:false, message:"Give a valid name"});
         }
         if(!Number(age) || Number(age) === undefined){
-            return res.status(404).json({success:false, message:"Give a valid age"});
+            return res.status(400).json({success:false, message:"Give a valid age"});
         }
         if(boxers.find((e) => e.id === id)){
-            return res.status(404).json({success:false, message:"Boxer already exists"});
+            return res.status(400).json({success:false, message:"Boxer already exists"});
         }
         const new_boxer = [{
             name,
@@ -37,9 +37,24 @@ app.post("/boxing", (req, res) => {
 
 // patch api
 
-app.patch("/boxing", (req, res) => {
+app.patch("/boxing/:id", (req, res) => {
     try{
-
+        const {id} = req.params;
+        const {name,age} = req.body;
+        boxers_index = boxers.findIndex((e) => e.id === id);
+        if(boxers_index === -1){
+            return res.status(404).json({success:false, message:"Boxer not found"});
+        }
+        if(!name && !age){
+            res.status(400).json({success:false, message:"Any one of the above field."});
+        }
+        if(name){
+            boxers[boxers_index].name = name;
+        }
+        if(age){
+            boxers[boxers_index].age = age;
+        }
+        return res.status(200).json({success:true, message:"boxers details edited successfully", data:boxers});
     }
     catch(error){
         return res.status(500).json({success:false, message:"Internal Server Error", error:error.message});
@@ -48,8 +63,15 @@ app.patch("/boxing", (req, res) => {
 
 // put api
 
-app.put("/boxing", (req, res) => {
-
+app.put("/boxing/:id", (req, res) => {
+    const {id} = req.params;
+    const {name, age} = req.body;
+    boxers_index = boxers.findIndex((e) => e.id === id);
+    if(boxers_index === -1){
+        return res.status(404).json({success:false, message:"Boxer not found"});
+    }
+    boxers[boxers_index] = {...boxers[boxers_index], name:name?? boxers[boxers_index].name, age:age?? boxers[boxers_index].age};
+    return res.status(200).json({success:true, message:"boxer details updated successfully"});
 });
 
 // delete api
