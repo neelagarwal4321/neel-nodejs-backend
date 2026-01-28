@@ -8,7 +8,14 @@ app.use(express.json());
 
 // post api
 
+app.post("/boxing", (req, res) => {
+});
+
 // patch api
+
+app.patch("/boxing", (req, res) => {
+    
+});
 
 // put api
 
